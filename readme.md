@@ -10,5 +10,5 @@ called `.hannahs_login_system` in the database folder.
 
 The test file login credentials are test123 pass123
 ## Info
-To install the requirements run `pip install -r requirements.txt`/
+To install the requirements run `pip install -r requirements.txt`\
 User info is stored in `./database`
