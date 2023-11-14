@@ -24,15 +24,12 @@ if rl.lower() == "l":
     password = input(f"{Fore.YELLOW}[!]{Fore.RESET} Password: ")
     data_to_check = f"{username}:{password}"
     hashed_user_and_pass = hashlib.sha256(data_to_check.encode()).hexdigest()
-    try:
-        with open(f"database/{username}.hannahs_login_system", 'r') as f:
-            file_content = f.read()
-            if hashed_user_and_pass in file_content:
-                print(f"{Fore.GREEN}[+]{Fore.RESET} Logged in")
-            else:
-                print(f"{Fore.RED}[-]{Fore.RESET} Incorrect user or password")
-    except:
-        print(f"{Fore.RED}[-]{Fore.RESET} That user does not exist")
+    with open(f"database/LOGONS.hannahs_login_system", 'r') as f:
+        file_content = f.read()
+        if hashed_user_and_pass in file_content:
+            print(f"{Fore.GREEN}[+]{Fore.RESET} Logged in")
+        else:
+            print(f"{Fore.RED}[-]{Fore.RESET} Incorrect user or password")
 
 
 
@@ -46,8 +43,7 @@ elif rl.lower() == "r":
             print(f"{Fore.RED}[-]{Fore.RESET} This username it taken")
             exit()
         else:
-            with open(f"database/{username}.hannahs_login_system", 'w') as f:
-                f.write(hashed_user_and_pass)
+            with open(f"database/LOGONS.hannahs_login_system", 'a') as f:
+                f.write(f"\n{hashed_user_and_pass}")
             print(f"{Fore.GREEN}[+]{Fore.RESET} Registered succesfully")
             exit()
-
