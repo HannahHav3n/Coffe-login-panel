@@ -38,12 +38,15 @@ elif rl.lower() == "r":
     password = input(f"{Fore.YELLOW}[!]{Fore.RESET} Password: ")
     data_to_hash = f"{username}:{password}"
     hashed_user_and_pass = hashlib.sha256(data_to_hash.encode()).hexdigest()
-    for file in os.listdir("database"):
-        if f"{username}.hannahs_login_system" in file:
+    with open("database/LOGONS.hannahs_login_system", 'r') as f:
+        file_content = f.read()
+        if hashed_user_and_pass in file_content:
             print(f"{Fore.RED}[-]{Fore.RESET} This username it taken")
             exit()
         else:
             with open(f"database/LOGONS.hannahs_login_system", 'a') as f:
                 f.write(f"\n{hashed_user_and_pass}")
+            print(f"{Fore.GREEN}[+]{Fore.RESET} Registered succesfully")
+            exit()
             print(f"{Fore.GREEN}[+]{Fore.RESET} Registered succesfully")
             exit()
